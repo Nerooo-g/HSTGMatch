@@ -1,0 +1,54 @@
+# HSTGMatch Default Configuration
+
+data:
+  grid_size_meters: 100          # Grid cell size in meters
+  distance_threshold: 200        # ATA-Graph edge distance threshold (meters)
+  train_ratio: 0.7
+  val_ratio: 0.1
+  test_ratio: 0.2
+
+model:
+  d_model: 128                   # Model dimension
+  n_encoder_layers: 4            # Transformer encoder layers
+  n_decoder_layers: 4            # Transformer decoder layers
+  n_heads: 8                     # Attention heads
+  d_ff: 512                      # Feed-forward dimension
+  dropout: 0.1
+  max_seq_len: 512               # Max trajectory length
+
+  # Graph embedding
+  n_gat_layers: 2                # Number of opt-GAT layers
+  n_gat_heads: 4                 # GAT attention heads
+  gat_dropout: 0.1
+
+  # Spatial-temporal
+  n_distance_slots: 64           # Number of distance interval slots
+  n_time_slots: 64               # Number of time interval slots
+  max_distance: 10000.0          # Max distance interval in meters
+  max_time: 3600.0               # Max time interval in seconds
+
+pretrain:
+  k: 0.5                         # Balance between grid CE and coord RMSE
+  mask_ratio: 0.15               # Fraction of tokens to mask
+  span_len: 3                    # Span masking length
+  lr: 0.0001
+  weight_decay: 0.00001
+  epochs: 50
+  batch_size: 32
+  warmup_steps: 1000
+  checkpoint_dir: checkpoints/pretrain
+
+train:
+  lr: 0.00005
+  weight_decay: 0.00001
+  epochs: 100
+  batch_size: 32
+  warmup_steps: 500
+  checkpoint_dir: checkpoints/train
+  pretrained_encoder: checkpoints/pretrain/best_encoder.pt
+  teacher_forcing_ratio: 1.0     # Start with full teacher forcing
+  clip_grad_norm: 1.0
+
+logging:
+  log_interval: 10
+  eval_interval: 1

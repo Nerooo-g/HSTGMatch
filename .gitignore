@@ -205,3 +205,28 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# HSTGMatch: model checkpoints (large binary files)
+checkpoints/
+!checkpoints/.gitkeep
+
+# HSTGMatch: real datasets (not committed — see data/format.md)
+data/beijing*/
+data/*.csv
+data/*.pkl
+data/*.h5
+data/*.hdf5
+
+# HSTGMatch: training logs and outputs
+*.log
+logs/
+runs/
+wandb/
+tensorboard/
+
+# Preprocessor cache
+*.pkl
+
+# OS
+.DS_Store
+Thumbs.db
