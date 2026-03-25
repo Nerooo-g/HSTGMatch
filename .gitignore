@@ -227,6 +227,9 @@ tensorboard/
 # Preprocessor cache
 *.pkl
 
+# Figures (keep SVG, ignore source PDF)
+main_fig.pdf
+
 # OS
 .DS_Store
 Thumbs.db

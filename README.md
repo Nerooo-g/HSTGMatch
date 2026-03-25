@@ -19,7 +19,7 @@ The model comprises three main components:
 
 These feed into a Transformer-based Seq2Seq model (encoder + decoder with teacher forcing) that outputs a segment-based route.
 
-![HSTGMatch Architecture](main_fig.pdf)
+![HSTGMatch Architecture](main_fig.svg)
 
 ## Results
 
