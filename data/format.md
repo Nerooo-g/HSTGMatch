@@ -132,18 +132,3 @@ After preprocessing (see `src/data/preprocess.py`), the following derived repres
 ### Spatial-Temporal Intervals
 - **Distance interval**: Haversine distance from `p_0` (first point of trajectory) to `p_i`, in meters
 - **Time interval**: Absolute difference `|timestamp_i - timestamp_0|`, in seconds
-
----
-
-## Synthetic Data
-
-A synthetic Beijing-like dataset can be generated using:
-
-```bash
-python scripts/generate_synthetic.py --output_dir data/synthetic --n_trajs 500 --seed 42
-```
-
-This generates a 2 km × 2 km grid-based road network centered near Beijing (116.39°E, 39.91°N) with:
-- ~200 road segments on a regular grid with intersections
-- 500 GPS trajectories following roads, with added Gaussian noise (~5 m std)
-- Ground-truth label routes for each trajectory
